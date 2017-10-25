@@ -14,32 +14,18 @@ public class World {
     private ConcurrentHashMap<Integer, Entity> entities;
     private ConcurrentHashMap<Location, Tile> tiles;
     private long ticks = 0;
-    private double dayLength;
     private long created;
-    private boolean dayTime;
 
     public World(String name) {
         this.name = name;
         this.tGenerator = Server.getServer().getTileGenerator();
         this.entities = new ConcurrentHashMap<>();
         this.tiles = new ConcurrentHashMap<>();
-        this.dayLength = (Server.getServer().tps() * 60.0) * 0.5;
         this.created = System.currentTimeMillis();
-        this.dayTime = true;
     }
 
     public void tick() {
         ticks++;
-        if (ticks % dayLength <= 0) {
-            if (dayTime) {
-                dayTime = false;
-                Server.getServer().getLogger().log("It is now night time for '" + name + "'.");
-            } else {
-                dayTime = true;
-                Server.getServer().getLogger().log("It is a new day for '" + name + "'!");
-                Server.getServer().getLogger().log("Time Since World Creation: " + (System.currentTimeMillis() - created));
-            }
-        }
         for (Tile tile : tiles.values()) {
             if (tile.isLoaded()) {
                 tile.tick();

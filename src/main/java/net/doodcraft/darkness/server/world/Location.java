@@ -4,26 +4,26 @@ import net.doodcraft.darkness.server.world.tile.Tile;
 
 public class Location {
 
-    World world;
-    int x;
-    int z;
+    private World world;
+    private double preciseX;
+    private double preciseZ;
 
-    public Location(World world, int x, int z) {
+    public Location(World world, double preciseX, double preciseZ) {
         this.world = world;
-        this.x = x;
-        this.z = z;
+        this.preciseX = preciseX;
+        this.preciseZ = preciseZ;
     }
 
     public World getWorld() {
-        return world;
+        return this.world;
     }
 
-    public int getX() {
-        return x;
+    public double getPreciseX() {
+        return this.preciseX;
     }
 
-    public int getZ() {
-        return z;
+    public double getPreciseZ() {
+        return this.preciseZ;
     }
 
     public Tile getTile() {
@@ -31,6 +31,6 @@ public class Location {
     }
 
     public boolean hasTile() {
-        return getTile() != null;
+        return this.getTile() != null;
     }
 }

@@ -14,7 +14,7 @@ public class TileGenerator {
 
     public void generateTile(Location location, boolean load) throws TileCreateException {
         if (!location.hasTile()) {
-            // TODO: Procedurally generate terrain. As of now, this will only create an ocean world.
+            // TODO: Generate the TileType, Resources, and natural Structures based on area information from Google.
             Tile tile = new Tile(location, TileType.WATER);
             location.getWorld().addTile(tile);
             if (load) {

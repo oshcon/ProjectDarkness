@@ -76,7 +76,7 @@ public class Server implements Serializable {
         running = true;
 
         List<World> activate = new ArrayList<>();
-        activate.add(worldManager.createWorld("test-world"));
+        activate.add(worldManager.createWorld("world"));
         for (World w : activate) {
             if (w != null) {
                 addWorld(w);

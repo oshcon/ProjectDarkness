@@ -14,18 +14,18 @@ public class Tile {
     private Location location;
     private List<Entity> entities;
     private List<Structure> structures;
-    private int ticks;
+    private int x;
+    private int z;
+    private Long ticks;
 
     private boolean isLoaded;
 
     public Tile(Location location, TileType type) throws TileCreateException {
-
-        if (location == null) {
-            throw new TileCreateException("Location cannot be null!");
-        }
-
         if (type == null) {
             throw new TileCreateException("TileType cannot be null!");
+        }
+        if (location == null) {
+            throw new TileCreateException("Location cannot be null!");
         }
 
         this.type = type;
@@ -33,6 +33,10 @@ public class Tile {
         this.entities = new ArrayList<>();
         this.structures = new ArrayList<>();
 
+        // TODO: Calculate x and z based on precise location from Google.
+        this.ticks = 0L;
+
+        // TODO: Start a task to determine whether to unload a tile automatically after a set duration of player inactivity.
         isLoaded = false;
     }
 
@@ -70,6 +74,11 @@ public class Tile {
 
     public void removeStructure(Structure structure) {
         this.structures.remove(structure);
+    }
+
+    public Long getTime() {
+        // TODO: Return real world time based on tile's precise location.
+        return System.currentTimeMillis();
     }
 
     public boolean isLoaded() {
